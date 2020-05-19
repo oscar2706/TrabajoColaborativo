@@ -21,7 +21,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
-    <title>CES</title>
+    <title>Agregar Materia</title>
 </head>
 
 <body>
@@ -29,48 +29,40 @@
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-dark border-bottom shadow">
         <h5 class="ml-lg-5 pl-lg-5 my-0 mr-md-auto font-weight-normal text-white">CES</h5>
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="px-2 text-white" href="#">Inicio</a>
-            <a class="mr-lg-5 pr-lg-5 pl-4 text-light" href="#">Acerca de</a>
+            <a class="px-2 text-white" href="EquiposDyl.html">Inicio</a>
+            <a class="px-2 text-white" href="Resultados.html">Resultados</a>
+            <a class="mr-lg-5 pr-lg-5 pl-4 text-light" href="index.html">Salir</a>
         </nav>
     </div>
 
     <!-- Contenido -->
-    <div class="container-lg">
-        <!-- Titulo -->
+    <div class="container-md">
+        <!-- Título -->
+        <br><br>
         <div class="row justify-content-center align-items-center my-3">
-          <br><br>
-          <br><br>
-          <br><br>
-          <br><br>
-            <h1 class="font-weight-light text-center mr-3">Bienvenido al Sistema de Coevaluaciones</h1>
+            <h1 class="font-weight-light text-center mr-3">Nueva Materia</h1>
         </div>
-        <!-- Cursos -->
-        <div class="container">
-          <div class="row justify-content-center mt-2 mt-lg-5">
-              <div class="col-12 col-md-10 col-lg-4">
-                  <div class="card shadow">
-                      <img src="" class="card-img-top">
-                      <div class="card-body">
-                          <div class="row justify-content-center">
-                              <a href="login_profesor.html" class="btn btn-primary">Soy un profesor</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-12 col-md-10 col-lg-4">
-                  <div class="card shadow">
-                      <img src="" class="card-img-top">
-                      <div class="card-body">
-                          <div class="row justify-content-center">
-                              <a href="IndexDylan.html" class="btn btn-primary">Soy un estudiante</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-           
-
+        <br>
+        <!-- Formulario -->
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-6">
+                <form action="" class="card shadow px-3 py-4">
+                    
+                    <!-- Código -->
+                    <div class="form-group">
+                        <label for="codigo">Código</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="codigo" required>
+                            <div class="input-group-append">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button class="btn btn-info">Aceptar</button>
+                        <a href="EquiposDyl.html" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </body>

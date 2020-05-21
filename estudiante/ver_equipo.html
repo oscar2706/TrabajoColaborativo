@@ -28,119 +28,113 @@
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-dark border-bottom shadow">
         <h5 class="ml-lg-5 pl-lg-5 my-0 mr-md-auto font-weight-normal text-white">CES</h5>
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="px-2 text-white" href="EquiposDyl.html">Inicio</a>
-            <a class="px-2 text-white" href="Resultados.html">Resultados</a>
-            <a class="mr-lg-5 pr-lg-5 pl-4 text-light" href="index.html">Salir</a>
+            <a class="px-2 text-white" href="equipos.html">Inicio</a>
+            <a class="px-2 text-white" href="resultados.html">Resultados</a>
+            <a class="mr-lg-5 pr-lg-5 pl-4 text-light" href="login_estudiante.html">Salir</a>
         </nav>
     </div>
     <!-- Contenido -->
     <div class="container-xl">
-
-        <br><br><br>
-
         <!-- Titulo -->
-        <div class="row mb-3">
-            <div class="col-12 text-center">
-                <h1 class="font-weight-light m-0 h2">Equipo de Trabajo <Equipo de Trabajo span class="badge badge-pill badge-secondary">8</span> </h1>
+        <div class="row mb-3 justify-content-center">
+            <div class="text-center">
+                <h1 class="font-weight-light mt-3 h2">Equipo de Trabajo</h1>
+                <p class="my-0 h6">Herramientas web</p>
+                <p class="text-secondary my-0">Primavera 2020</p>
             </div>
         </div>
 
-        
+        <div class="row justify-content-center">
             <!-- Lista de equipos -->
-            <br><br>
-            <center>
-            <div  class="col-12 col-md-6 col-lg-8">
+            <div class="col-12 col-md-6 col-lg-8">
                 <div class="card shadow">
                     <div class="card-body">
                         <div>
-                         <h2 class="h5 mb-3 pb-2 text-dark border-bottom border-secondary">
-                            Estos son los compañeros de tu equipo
-                            
+                            <h2 class="h5 mb-3 pb-2 text-dark border-bottom border-secondary">
+                                Integrantes del equipo
+                            </h2>
                         </div>
+                        <!-- Tabla de integrantes -->
                         <table class="table table-striped">
                             <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Dylan Lozada Mendoza</td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-info" data-toggle="modal"
-                                    data-target="#evaluacionModal">
-                                    Realizar Coevaluación
-                                </button>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>Oscar Patricio Hernandez</td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-info" data-toggle="modal"
-                                    data-target="#evaluacionModal">
-                                    Realizar Coevaluación
-                                </button>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td>Rebeca Rubio Quintero</td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-info" data-toggle="modal"
-                                    data-target="#evaluacionModal">
-                                    Realizar Coevaluación
-                                </button>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">4</th>
-                                <td>Estefania Sarmiento Lozada</td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-info" data-toggle="modal"
-                                    data-target="#evaluacionModal">
-                                    Realizar Coevaluación
-                                </button>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">5</th>
-                                <td>Hugo Leon Torres</td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-info" data-toggle="modal"
-                                    data-target="#evaluacionModal">
-                                    Realizar Coevaluación
-                                </button>
-                                </td>
-                              </tr>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Dylan Lozada Mendoza</td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Oscar Patricio Hernandez</td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-info" data-toggle="modal"
+                                            data-target="#evaluacionModal">
+                                            Realizar coevaluación
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Rebeca Rubio Quintero</td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-info" data-toggle="modal"
+                                            data-target="#evaluacionModal">
+                                            Realizar coevaluación
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td>Estefania Sarmiento Lozada</td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-info" data-toggle="modal"
+                                            data-target="#evaluacionModal">
+                                            Realizar coevaluación
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">5</th>
+                                    <td>Hugo Leon Torres</td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-info" data-toggle="modal"
+                                            data-target="#evaluacionModal">
+                                            Realizar coevaluación
+                                        </button>
+                                    </td>
+                                </tr>
                             </tbody>
-                          </table>
+                        </table>
 
-                            <!-- Evaluación Modal -->
-                            <div class="modal fade" id="evaluacionModal" tabindex="-1" role="dialog"
-                                aria-labelledby="evaluacionModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-dark">
-                                            <h5 class="modal-title text-white" id="evaluacionModalLabel">Comenzar Coevaluación</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body text-center">
-                                            <p class="m-0 h6">¿Desea iniciar la coevaluación de este alumno?</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <a class="btn btn-info" href="Preguntas.html" role="button">Aceptar</a>
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                data-dismiss="modal">Cancelar</button>
-                                        </div>
+                        <!-- Confirmación realiza coevaluación Modal -->
+                        <div class="modal fade" id="evaluacionModal" tabindex="-1" role="dialog"
+                            aria-labelledby="evaluacionModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-dark">
+                                        <h5 class="modal-title text-white" id="evaluacionModalLabel">Comenzar
+                                            Coevaluación
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <p class="m-0 h6">¿Desea iniciar la coevaluación de este alumno?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-info" href="cuestionario.html" role="button">Evaluar</a>
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            data-dismiss="modal">Cancelar</button>
                                     </div>
                                 </div>
                             </div>
-                        </h2>
-                          
-                        
+                        </div>
                     </div>
                 </div>
-            </div></center>
+            </div>
         </div>
+    </div>
 </body>
 
 </html>

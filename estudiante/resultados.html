@@ -2,138 +2,137 @@
 <html lang="es_MX">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <!-- Custom styles -->
-    <link href="styles.css" rel="stylesheet">
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
-    <title>Resultados</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <!-- Custom styles -->
+  <link href="styles.css" rel="stylesheet">
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <title>Resultados</title>
 </head>
 
 <body>
-    <!-- Barra de navegación -->
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-dark border-bottom shadow">
-        <h5 class="ml-lg-5 pl-lg-5 my-0 mr-md-auto font-weight-normal text-white">CES</h5>
-        <nav class="my-2 my-md-0 mr-md-3">
-            <a class="px-2 text-white" href="equipos.html">Inicio</a>
-            <a class="px-2 text-white" href="resultados.html">Resultados</a>
-            <a class="mr-lg-5 pr-lg-5 pl-4 text-light" href="login_estudiante.html">Salir</a>
-        </nav>
+  <!-- Barra de navegación -->
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-dark border-bottom shadow">
+    <h5 class="ml-lg-5 pl-lg-5 my-0 mr-md-auto font-weight-normal text-white">CES</h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+      <a class="px-2 text-white" href="equipos.html">Inicio</a>
+      <a class="px-2 text-white" href="resultados.html">Resultados</a>
+      <a class="mr-lg-5 pr-lg-5 pl-4 text-light" href="login_estudiante.html">Salir</a>
+    </nav>
+  </div>
+  <!-- Contenido -->
+  <div class="container-xl">
+
+    <!-- Titulo -->
+    <div class="row justify-content-center align-items-center my-3">
+      <h1 class="font-weight-light text-center mr-3">Mis resultados de coevaluaciones</h1>
     </div>
-    <!-- Contenido -->
-    <div class="container-xl">
+    <div class="row">
 
-        <!-- Titulo -->
-        <div class="row justify-content-center align-items-center my-3">
-            <h1 class="font-weight-light text-center mr-3">Mis resultados de coevaluaciones</h1>
+      <!-- Lista de alumnos -->
+      <div class="col-12 col-md-6 col-lg-6 mb-3">
+        <div class="card shadow">
+          <div class="card-body">
+            <h2 class="h4 mb-0 pb-2 text-dark border-bottom border-secondary">
+              Rúbrica de Evaluación
+            </h2>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item py-2">
+                <!-- <span class="badge badge-warning">⚠</span>  -->
+                Las puntuaciones obtenidas en las coevaluaciones se evaluaron de la siguiente manera
+                <canvas class="my-4 chartjs-render-monitor" id="myChart" width="332" height="129"
+                  style="display: block; height: 322px; width: 129px;"></canvas>
+                <!-- Graphs -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+                <script>
+                  var ctx = document.getElementById("myChart");
+                  var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                      labels: ["Malo", "Mejora", "Regular", "Bueno", "Excelente"],
+                      datasets: [{
+                        data: [1, 2, 3, 4, 5],
+                        lineTension: 0,
+                        backgroundColor: 'transparent',
+                        borderColor: '#007bff',
+                        borderWidth: 4,
+                        pointBackgroundColor: '#007bff'
+                      }]
+                    },
+                    options: {
+                      scales: {
+                        yAxes: [{
+                          ticks: {
+                            beginAtZero: false
+                          }
+                        }]
+                      },
+                      legend: {
+                        display: false,
+                      }
+                    }
+                  });
+                </script>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="row">
+      </div>
 
-            <!-- Lista de alumnos -->
-            <div class="col-12 col-md-6 col-lg-6 mb-3">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h2 class="h4 mb-0 pb-2 text-dark border-bottom border-secondary">
-                            Rúbrica de Evaluación
-                        </h2>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item py-2">
-                                <!-- <span class="badge badge-warning">⚠</span>  -->
-                                Las puntuaciones obtenidas en las coevaluaciones se evaluaron de la siguiente manera
-                                <canvas class="my-4 chartjs-render-monitor" id="myChart" width="332" height="129" style="display: block; height: 322px; width: 129px;"></canvas>
-                                <!-- Graphs -->
-                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-                                    <script>
-                                    var ctx = document.getElementById("myChart");
-                                    var myChart = new Chart(ctx, {
-                                        type: 'line',
-                                        data: {
-                                        labels: ["Malo", "Mejora", "Regular", "Bueno", "Excelente"],
-                                        datasets: [{
-                                            data: [1,2,3,4,5],
-                                            lineTension: 0,
-                                            backgroundColor: 'transparent',
-                                            borderColor: '#007bff',
-                                            borderWidth: 4,
-                                            pointBackgroundColor: '#007bff'
-                                        }]
-                                        },
-                                        options: {
-                                        scales: {
-                                            yAxes: [{
-                                            ticks: {
-                                                beginAtZero: false
-                                            }
-                                            }]
-                                        },
-                                        legend: {
-                                            display: false,
-                                        }
-                                        }
-                                    });
-                                    </script>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+      <!-- Lista de equipos -->
+      <div class="col-12 col-md-6 col-lg-6">
+        <div class="card shadow">
+          <div class="card-body">
+            <h2 class="h4 mb-3 pb-2 text-dark border-bottom border-secondary">Lista de Equipos</h2>
+            <!-- Equipo -->
+            <div class="card mb-3">
+              <div class="card-header border-light font-weight-bolder">Equipo <span
+                  class="badge badge-pill badge-secondary">7</span></div>
+              <div class="card-body px-0 py-2">
+                <ul class="mb-0">
+                  <li>Buena Comunicación = 5</li>
+                  <li>Puntualidad = 4</li>
+                  <li>Calidad del Trabajo = 4</li>
+                  <li>Aportes al equipo = 1</li>
+                  <li>Disposición para trabajar = 5</li>
+                  <li>Respeto = 2</li>
+                </ul>
+              </div>
             </div>
-            
-            <!-- Lista de equipos -->
-            <div class="col-12 col-md-6 col-lg-6">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h2 class="h4 mb-3 pb-2 text-dark border-bottom border-secondary">
-                            Lista de Equipos 
-                            
+            <!-- Equipo -->
+            <div class="card mb-3">
+              <div class="card-header border-light font-weight-bolder">Equipo <span
+                  class="badge badge-pill badge-secondary">3</span></div>
+              <div class="card-body px-0 py-2">
+                <ul class="mb-0">
+                  <li>Buena Comunicación = 5</li>
+                  <li>Puntualidad = 4</li>
+                  <li>Calidad del Trabajo = 4</li>
+                  <li>Aportes al equipo = 1</li>
+                  <li>Disposición para trabajar = 5</li>
+                  <li>Respeto = 2</li>
+                </ul>
+              </div>
+            </div>
 
-                        </h2>
-                        <!-- Equipo -->
-                        <div class="card mb-3">
-                            <div class="card-header border-light font-weight-bolder">Equipo <span class="badge badge-pill badge-secondary">7</span></div>
-                            <div class="card-body px-0 py-2">
-                                <ul class="mb-0">
-                                    <li>Buena Comunicación = 5</li>
-                                    <li>Puntualidad = 4</li>
-                                    <li>Calidad del Trabajo = 4</li>
-                                    <li>Aportes al equipo = 1</li>
-                                    <li>Disposición para trabajar = 5</li>
-                                    <li>Respeto = 2</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Equipo -->
-                        <div class="card mb-3">
-                            <div class="card-header border-light font-weight-bolder">Equipo <span class="badge badge-pill badge-secondary">3</span></div>
-                            <div class="card-body px-0 py-2">
-                                <ul class="mb-0">
-                                    <li>Buena Comunicación = 5</li>
-                                    <li>Puntualidad = 4</li>
-                                    <li>Calidad del Trabajo = 4</li>
-                                    <li>Aportes al equipo = 1</li>
-                                    <li>Disposición para trabajar = 5</li>
-                                    <li>Respeto = 2</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+    </div>
 </body>
 
 </html>

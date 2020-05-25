@@ -21,14 +21,14 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
-  <title>Inicio Sesión</title>
+  <title>Registro estudiante</title>
 </head>
 
-<body class="container">
+<body class="container bg-light">
   <div class="row justify-content-center mt-4">
     <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-      <h1 class="text-primary h2 text-center mb-3">Inicia sesión como estudiante</h1>
-      <div class="card shadow bg-white rounded mb-3">
+      <h1 class="text-center h2 mb-3">Crear cuenta como estudiante</h1>
+      <div class="card shadow-lg mb-3 bg-white">
         <div class="card-body">
           <form action="">
             <div class="form-group">
@@ -37,15 +37,15 @@
             </div>
             <div class="form-group">
               <label for="Password">Contraseña</label>
-              <input type="password" class="form-control" name="Password" id="Password">
+              <input type="password" class="form-control" name="Password" id="Contraseña">
             </div>
-            <a href="equipos.html" class="btn btn-primary btn-block">Iniciar sesión</a>
+            <div class="form-group">
+              <label for="ConfirmaPassword">Confirmar contraseña</label>
+              <input type="password"
+                class="form-control" name="ConfirmaPassword" id="ConfirmaPassword" aria-describedby="helpId" placeholder="">
+            </div>
+            <button class="btn btn-info btn-block py-3 font-weight-bolder">Registrarme</button>
           </form>
-        </div>
-      </div>
-      <div class="card shadow bg-light">
-        <div class="card-body">
-          ¿Eres un estudiante nuevo? <a href="registro_estudiante.html" class="">Crea una cuenta</a>.
         </div>
       </div>
     </div>

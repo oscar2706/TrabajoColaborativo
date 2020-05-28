@@ -27,22 +27,23 @@
 <body class="container bg-light">
   <div class="row justify-content-center mt-4">
     <div class="col-12 col-md-6 col-lg-6 col-xl-4">
+      <br>
       <h1 class="text-center h2 mb-3">Crear cuenta como profesor</h1>
       <div class="card shadow-lg mb-3 bg-white">
         <div class="card-body">
-          <form action="">
+          <form action="Registro.php" method="POST">
             <div class="form-group">
               <label for="Correo">Correo</label>
-              <input type="text" class="form-control" name="Correo" id="Correo">
+              <input type="text" class="form-control" name="Correo" id="Correo" required autofocus>
             </div>
             <div class="form-group">
               <label for="Password">Contraseña</label>
-              <input type="password" class="form-control" name="Password" id="Contraseña">
+              <input type="password" class="form-control" name="Password" id="Contraseña" required autofocus>
             </div>
             <div class="form-group">
               <label for="ConfirmaPassword">Confirmar contraseña</label>
               <input type="password"
-                class="form-control" name="ConfirmaPassword" id="ConfirmaPassword" aria-describedby="helpId" placeholder="">
+                class="form-control" name="ConfirmaPassword" id="ConfirmaPassword" aria-describedby="helpId" placeholder="" required autofocus>
             </div>
             <button class="btn btn-info btn-block py-3 font-weight-bolder">Registrarme</button>
           </form>

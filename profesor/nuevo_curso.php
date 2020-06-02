@@ -1,26 +1,28 @@
 <?php
-  $link=new mysqli("localhost","root","","tc");
-  if ($link->connect_errno) {
-    echo "Fallo: ".$link->connect_error;
-  }
+  require('conexion.php');
   session_start();
-  if(!$_SESSION['Correo'] && !$_SESSION['Contraseña']){
-    echo "Error";
-  }
-  else{
-    $correo=$_SESSION['Correo'];
-    $contraseña=$_SESSION['Contraseña'];
-    if($result1=$link->query("SELECT * FROM profesor WHERE correo='$correo' AND password='$contraseña'")){
-      $row1=$result1->fetch_array(MYSQLI_ASSOC);
-      $idProfesor=$row1['idProfesor'];
-    }
-  }
+  $idProfesor=$_SESSION['Id_Profesor'];
+
   if(!empty($_POST['nombre']) && !empty($_POST['codigo']) && !empty($_POST['periodo'])){
-    $nombre=utf8_encode($_POST['nombre']);
+    $nombre=$_POST['nombre'];
     $codigo=$_POST['codigo'];
     $periodo=$_POST['periodo'];
+    if($periodo=="Primavera"){
+      $periodo="1";
+    }
+    elseif($periodo=="Verano"){
+      $periodo="2";
+    }
+    else{
+      $periodo="3";
+    }
+
     $ano="2020";
-    $result1=$link->query("INSERT INTO curso (idCurso,nombre,periodo,ano,Profesor_idProfesor) VALUES ('$codigo','$nombre','$periodo','$ano','$idProfesor')");
+    $estadoCurso="1";
+    $result1=$conn->query("INSERT INTO curso (idCurso,nombre,year,idPeriodo,idProfesor,idEstadoCurso) VALUES ('$codigo','$nombre','$ano','$periodo','$idProfesor','$estadoCurso')");
+    
+    header("location: cursos.php");
+    
   }
 ?>
 <!DOCTYPE html>
@@ -57,7 +59,6 @@
   }
   function cambiaValores() {
       var inputNombre = document.getElementById("codigo");
-
       var str = "1234567890";
       var clave="";
       //Reconstruimos la contraseña segun la longitud que se quiera
@@ -71,9 +72,9 @@
   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-dark border-bottom shadow">
     <h5 class="ml-lg-5 pl-lg-5 my-0 mr-md-auto font-weight-normal text-white">CES</h5>
     <nav class="my-2 my-md-0 mr-md-3">
-      <a class="px-2 text-white" href="cursos.html">Cursos</a>
+      <a class="px-2 text-white" href="cursos.php">Cursos</a>
       <!-- En duda -->
-      <a class="px-2 text-white" href="#">Euipos</a>
+      <a class="px-2 text-white" href="#">Equipos</a>
       <a class="px-2 text-white" href="#">Alumnos</a>
       <!--  -->
       <a class="mr-lg-5 pr-lg-5 pl-4 text-light" href="login_profesor.html">Salir</a>

@@ -57,7 +57,7 @@ echo $idProfesor;
     <!-- Titulo -->
     <div class="row justify-content-center align-items-center my-3">
       <h1 class="font-weight-light text-center mr-3">Cursos</h1>
-      <a href="nuevo_curso.html" class="btn btn-outline-info">Nuevo curso</a>
+      <a href="nuevo_curso.php" class="btn btn-outline-info">Nuevo curso</a>
     </div>
 
 

@@ -1,14 +1,11 @@
 <?php
-require('conexion.php');
+require('../config/php/conexion.php');
 //Falta saber si el curso está finalizado o no. 
 //Falta Contar los estudiantes de cada curso.
-
 
 $_SESSION['userid'] = 1; //Este será el id del profesor
 $idProfesor = $_SESSION['userid'];
 echo $idProfesor; 
-
-
 
 ?>
 

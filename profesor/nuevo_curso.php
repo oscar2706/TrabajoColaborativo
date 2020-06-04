@@ -1,5 +1,5 @@
 <?php
-  require('conexion.php');
+  require('../config/php/conexion.php');
   session_start();
   $idProfesor=$_SESSION['Id_Profesor'];
 

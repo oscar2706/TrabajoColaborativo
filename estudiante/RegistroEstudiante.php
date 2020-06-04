@@ -4,6 +4,13 @@ include 'Conexion.php';
     $Nombre = $_POST["Nombre"];
     $Correo = $_POST["Correo"];
     $Password = $_POST["Password"];
+    $ConfirmaPassword = $_POST["ConfirmaPassword"];
+
+    if($Password == $ConfirmaPassword){
+        echo 'correcto';
+    }else{
+        echo 'error';
+    }
 
     $insetar = "INSERT INTO alumno (Matricula, Nombre, Correo, Password) VALUES ('$Matricula', '$Nombre','$Correo', '$Password')";
     $resultado = mysqli_query($conexion, $insetar);

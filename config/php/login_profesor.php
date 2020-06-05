@@ -18,13 +18,13 @@ try {
     if ($registro->total == 1) {
       $_SESSION['userid'] = $registro->idProfesor;
       echo 'Login Correct';
-      mysqli_close($conn);
+      $conn = null;
     } else {
       echo 'Contraseña o usuario incorrecto';
-      mysqli_close($conn);
+      $conn = null;
     }
   }
 } catch (PDOException $e) {
   echo $query . "<br>" . $e->getMessage();
-  mysqli_close($conn);
+  $conn = null;
 }

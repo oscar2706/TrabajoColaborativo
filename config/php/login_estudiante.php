@@ -18,13 +18,13 @@ try {
     if ($registro->total == 1) {
       $_SESSION['matricula'] = $registro->matricula;
       echo 'Login Correct';
-      mysqli_close($conn);
+      
     } else {
       echo 'Contraseña o usuario incorrecto';
-      mysqli_close($conn);
+      
     }
   }
 } catch (PDOException $e) {
   echo $query . "<br>" . $e->getMessage();
-  mysqli_close($conn);
+  $conn = null;
 }

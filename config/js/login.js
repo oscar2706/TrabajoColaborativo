@@ -15,18 +15,15 @@ $(document).ready(function () {
         'Contraseña': password
       },
       success: function (response) {
-        $('#Correo').val('');
         $('#Contraseña').val('');
         if (response == 'Login Correct') {
           console.log(response);
           console.log("login Correcto");
           window.location.href = "cursos.php";
         } else if (response != 'Contraseña o usuario incorrectos') {
-          $('#Correo').val('');
-          $('#Contraseña').val('');
           if(! ($('#Error').length) ){
             $("#Contraseña").after(
-              '<div class="alert alert-danger" id="Error">'
+              '<div class="alert alert-danger mt-3" id="Error">'
               +'    <strong>¡Error!</strong> <br>El correo o la contraseña son incorrectos.'
               +'</div>'
             );
@@ -46,33 +43,28 @@ $(document).ready(function () {
     console.log("Contraseña: " + password);
 
     $.ajax({
-      url: '../config/php/login_profesor.php',
+      url: '../config/php/login_estudiante.php',
       type: 'POST',
       data: {
         'Correo': email,
         'Contraseña': password
       },
       success: function (response) {
-        $('#Correo').val('');
         $('#Contraseña').val('');
         if (response == 'Login Correct') {
           console.log(response);
           console.log("login Correcto");
-          
           window.location.href = "equipos.html";
         } else if (response != 'Contraseña o usuario incorrectos') {
-          $('#Correo').val('');
-          $('#Contraseña').val('');
           if(! ($('#Error').length) ){
             $("#Contraseña").after(
-              '<div class="alert alert-danger" id="Error">'
+              '<div class="alert alert-danger mt-3" id="Error">'
               +'    <strong>¡Error!</strong> <br>El correo o la contraseña son incorrectos.'
               +'</div>'
             );
           }
           console.log(response);
           console.log("login Incorrecto");
-          
         }
       }
     });
@@ -102,7 +94,7 @@ $(document).ready(function () {
   $('#btnSignOutEst').on('click', function (event) {
     event.preventDefault();
     $.ajax({
-      url: '../config/php/login_profesor.php',
+      url: '../config/php/login_estudiante.php',
       type: 'POST',
       data: {
         'bye': 1001

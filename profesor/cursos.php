@@ -1,9 +1,6 @@
 <?php
-require('../config/php/conexion.php');
-//Falta saber si el curso está finalizado o no. 
-//Falta Contar los estudiantes de cada curso.
-
-$_SESSION['userid'] = 1; //Este será el id del profesor
+require('conexion.php');
+$_SESSION['userid'] =5; //Este será el id del profesor
 $idProfesor = $_SESSION['userid'];
 echo $idProfesor; 
 
@@ -57,50 +54,53 @@ echo $idProfesor;
       <a href="nuevo_curso.php" class="btn btn-outline-info">Nuevo curso</a>
     </div>
 
-
-
-
-
-    
     <!-- Cursos -->
-
     <?php 
-
     	echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4">';
-    	$consulta = 'SELECT * from curso WHERE Profesor_idProfesor = "'.$idProfesor.'"';
-		foreach($conn->query($consulta) as $row){
-	
-			$nombreCurso = $row['nombre'];
-	    	$periodoCurso = $row['periodo'];
-			$yearCurso = $row['year'];
-			$NFC = $row['idCurso'];
+    	$consulta = 'SELECT * from curso WHERE idProfesor = "'.$idProfesor.'"';
+		    foreach($conn->query($consulta) as $row){
+
+  		  $nombreCurso = $row['nombre'];
+	      $periodoCurso = $row['idPeriodo'];
+	   	  $yearCurso = $row['year'];
+		    $NFC = $row['idCurso'];
+		    $estadoCurso = $row['idEstadoCurso'];
+
+        $consultaPeriodo = 'select nombre from periodo where idPeriodo = "'.$periodoCurso.'"';
+        foreach ($conn->query($consultaPeriodo) as $r) {
+          $nombrePeriodo = $r['nombre'];     
+        }
+
+        $consultaEstado = 'select estado from estadoCurso where idEstadoCurso = "'.$estadoCurso.'"';
+        foreach ($conn->query($consultaEstado) as $r2) {
+          $eCurso = $r2['estado'];        
+        }      
 
 
-			
+        $consultaNumeroEstudiantes = 'select count(idCurso) from curso_alumno where idCurso = "'.$NFC.'"';  
+        foreach ($conn->query($consultaNumeroEstudiantes) as $k) {
+          $nEstudiantes = $k[0];
+        }
 
-			      echo '<div class="col mb-4">';
-        			echo '<div class="card shadow-lg">';
-          				echo '<div class="card-body text-center">';
-            			echo '<h2 class="h4 font-weight-light mb-1"> '.$nombreCurso.'</h2>';
-            			echo '<p class="text-secondary my-0"> '.$periodoCurso.' '.$yearCurso.'</p>';
-            			echo '<span class="badge badge-success mt-0 mb-2"> Finalizado </span>';
-            			echo '<p class="text-dark m-1">Código: '.$NFC.'</p>';
-            			echo '<p class="text-dark m-1 mb-3">26 estudiantes</p>';
-            			echo '<a href="detalles_curso.html" class="btn btn-outline-info btn-block">Ver curso</a>';
-         			 echo '</div>';
-        			echo '</div>';
-      			echo '</div>';
-
+        echo '<form action = "detalles_curso.php" method = POST>';
+			  echo '<div class="col mb-4">';
+          echo '<div class="card shadow-lg">';
+          			echo '<div class="card-body text-center">';
+            		echo '<h2 class="h4 font-weight-light mb-1"> '.$nombreCurso.'</h2>';
+            		echo '<p class="text-secondary my-0"> '.$nombrePeriodo.' '.$yearCurso.'</p>';
+            		echo '<span class="badge badge-success mt-0 mb-2"> '.$eCurso.' </span>';
+            		echo '<p class="text-dark m-1">Código: '.$NFC.'</p>';
+            		echo '<input type = "hidden" name = "NFC" value = "'.$NFC.'" >';
+                echo '<p class="text-dark m-1 mb-3">'.$nEstudiantes.' estudiantes. </p>';
+            		echo '<input type = "submit" class="btn btn-outline-info btn-block" value = "Ver Curso">';
+         			echo '</div>';
+        	echo '</div>';
+      	echo '</div>';
+        echo '</form>';
 		}
-		echo '</div>';
-
-
+		  echo '</div>';
     ?>
-
-
-
     </div>
   </div>
 </body>
-
 </html>

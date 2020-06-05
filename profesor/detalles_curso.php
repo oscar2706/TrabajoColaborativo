@@ -1,28 +1,47 @@
-<?php 
-  session_start();
-  $link=new mysqli("localhost","root","","tc");
-  if ($link->connect_errno) {
-    echo "Fallo: ".$link->connect_error;
-  }
-   if(!$_SESSION['Correo'] && !$_SESSION['Contraseña']){
-    echo "Error: ";
-  }
-  else{
-    $correo=$_SESSION['Correo'];
-    $contraseña=$_SESSION['Contraseña'];
-    if($result1=$link->query("SELECT * FROM profesor WHERE correo='$correo' AND password='$contraseña'")){
-      $row1=$result1->fetch_array(MYSQLI_ASSOC);
-      $idProfesor=$row1['idProfesor'];
-      if( isset($_GET["clave"]) ){
-        $claveCurso=$_GET['clave'];
-        $result2=$link->query("SELECT * FROM curso WHERE idCurso='$claveCurso'");
-        $row2=$result2->fetch_array(MYSQLI_ASSOC);
-        $nombreCurso=$row2['nombre'];
-        $periodoCurso=$row2['periodo'];
-        $anoCurso=$row2['ano'];
-      }
-    }
-  }
+<?php
+require('conexion.php');
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+  $codigoMateria = $_POST['NFC'];
+}
+
+
+$_SESSION['userid'] =1; //Este será el id del profesor
+$idProfesor = $_SESSION['userid'];
+
+
+
+
+$consulta = 'SELECT * from curso WHERE idCurso = "'.$codigoMateria.'"';
+foreach($conn->query($consulta) as $row){
+        $nombreCurso = $row['nombre'];
+        $periodoCurso = $row['idPeriodo'];
+        $yearCurso = $row['year'];
+        $NFC = $codigoMateria;
+        $estadoCurso = $row['idEstadoCurso'];
+}
+
+
+        $consultaPeriodo = 'select nombre from periodo where idPeriodo = "'.$periodoCurso.'"';
+        foreach ($conn->query($consultaPeriodo) as $r) {
+          $nombrePeriodo = $r['nombre'];  //Nombre del periodo (Primavera, Verano u Otoño)
+        }
+
+        $consultaEstado = 'select estado from estadoCurso where idEstadoCurso = "'.$estadoCurso.'"';
+        foreach ($conn->query($consultaEstado) as $r2) {
+          $eCurso = $r2['estado']; //estado del curso (Activo o Finalizado)
+        }
+
+        $consultaNumeroEstudiantes = 'select count(idCurso) from curso_alumno where idCurso = "'.$NFC.'"';  
+        foreach ($conn->query($consultaNumeroEstudiantes) as $k) {
+          $nEstudiantes = $k[0]; //Numero de estudiantes
+        }
+
+        $consultaNumeroEquipos = 'select count(idCurso) from equipo where idCurso = "'.$NFC.'"';  
+        foreach ($conn->query($consultaNumeroEquipos) as $k2) {
+          $nEquipos = $k2[0]; //Numero de estudiantes
+        }
+
 ?>
 <!DOCTYPE html>
 <html lang="es_MX">
@@ -70,7 +89,7 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb bg-transparent mb-0 py-2 pl-1 justify-content-center">
         <li class="breadcrumb-item"><a href="cursos.php">Cursos</a></li>
-        <li class="breadcrumb-item active" aria-current="page"><?php echo $claveCurso ?></li>
+        <li class="breadcrumb-item active" aria-current="page"><?php echo $NFC ?></li>
       </ol>
     </nav>
 
@@ -78,12 +97,12 @@
     <div class="row mb-3">
       <div class="col-12 text-center">
         <h1 class="font-weight-light m-0 h2"><?php echo utf8_encode($nombreCurso); ?></h1>
-        <h6 class="text-muted pl-2 mt-1 m-0"><?php echo $periodoCurso."&nbsp;".$anoCurso; ?></h6>
+        <h6 class="text-muted pl-2 mt-1 m-0"><?php echo $nombrePeriodo."&nbsp;".$yearCurso; ?></h6>
         <div class="d-flex justify-content-center">
-          <h5 class="pl-2 mt-1 m-0">Código: <?php echo $claveCurso; ?></h5>
+          <h5 class="pl-2 mt-1 m-0">Código: <?php echo $NFC; ?></h5>
           <button type="button" class="ml-2 btn btn-outline-secondary btn-sm p-1">Copiar</button>
         </div>
-        <span class="badge badge-success mt-2 mb-2">Finalizado</span>
+        <span class="badge badge-success mt-2 mb-2"> <?php echo $eCurso ?> </span>
       </div>
     </div>
     <div class="row">
@@ -93,23 +112,23 @@
         <div class="card shadow">
           <div class="card-body">
             <h2 class="h4 mb-0 pb-2 text-dark border-bottom border-secondary">
-              Alumnos <span class="badge badge-pill badge-secondary">14</span>
+              Alumnos <span class="badge badge-pill badge-secondary"> <?php echo $nEstudiantes ?></span>
             </h2>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item py-2">JAVIER NUÑEZ ALBEROLA</li>
-              <li class="list-group-item py-2">JOSE MANUEL CANTERO HERNAN</li>
-              <li class="list-group-item py-2">GONZALO AUGUSTO ESPINOSA</li>
-              <li class="list-group-item py-2">JAVIER HURTADO ANDUJAR</li>
-              <li class="list-group-item py-2">JUAN MANUEL TORRICO PARREÑO</li>
-              <li class="list-group-item py-2">GABRIEL BORREGUERO BELLES</li>
-              <li class="list-group-item py-2">VICTORIA MELO PIÑA</li>
-              <li class="list-group-item py-2">SARA VIEIRA GALIANA</li>
-              <li class="list-group-item py-2">LORENA GAGO BORRELL</li>
-              <li class="list-group-item py-2">ROSA POZUELO CUBILLO</li>
-              <li class="list-group-item py-2">ROSARIO TAMAYO FIGUERAS</li>
-              <li class="list-group-item py-2">INES PINTO MATESANZ</li>
-              <li class="list-group-item py-2">JOAN SECO COBOS</li>
-              <li class="list-group-item py-2">DIEGO CAÑAS ARMERO</li>
+              <?php
+                $consultaAlumnosMateria = 'Select matricula from curso_alumno where idcurso = "'.$NFC.'"';
+                foreach ($conn->query($consultaAlumnosMateria) as $r3) {
+                  $matricula = $r3['matricula'];
+
+                  $consultaNombreAlumno = 'SELECT nombre FROM alumno where matricula = "'.$matricula.'"';
+                  foreach ($conn->query($consultaNombreAlumno) as $r4) {
+                    $nombre = $r4['nombre'];                   
+                  }                  
+                  echo '<li class="list-group-item py-2">'.$nombre.'</li>';
+                }
+
+              ?>
+
             </ul>
           </div>
         </div>
@@ -120,7 +139,7 @@
         <div class="card shadow">
           <div class="card-body">
             <h2 class="h4 mb-3 pb-2 text-dark border-bottom border-secondary">
-              Equipos <span class="badge badge-pill badge-secondary">3</span>
+              Equipos <span class="badge badge-pill badge-secondary"> <?php echo $nEquipos ?></span>
               <a href="asignar_equipos.html" class="btn btn-outline-info">Gestionar equipos</a>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#evaluacionModal">
@@ -151,42 +170,36 @@
                 </div>
               </div>
             </h2>
-            <!-- Equipo -->
-            <div class="card mb-3">
-              <div class="card-header border-light font-weight-bolder">Alfa</div>
-              <div class="card-body px-0 py-2">
-                <ul class="mb-0">
-                  <li>LORENA GAGO BORRELL</li>
-                  <li>ROSA POZUELO CUBILLO</li>
-                  <li>ROSARIO TAMAYO FIGUERAS</li>
-                  <li>INES PINTO MATESANZ</li>
-                </ul>
-              </div>
-            </div>
-            <!-- Equipo -->
-            <div class="card mb-3">
-              <div class="card-header border-light font-weight-bolder">Delta</div>
-              <div class="card-body px-0 py-2">
-                <ul class="mb-0">
-                  <li>LORENA GAGO BORRELL</li>
-                  <li>ROSA POZUELO CUBILLO</li>
-                  <li>ROSARIO TAMAYO FIGUERAS</li>
-                  <li>INES PINTO MATESANZ</li>
-                </ul>
-              </div>
-            </div>
-            <!-- Equipo -->
-            <div class="card mb-3">
-              <div class="card-header border-light font-weight-bolder">Dinamita</div>
-              <div class="card-body px-0 py-2">
-                <ul class="mb-0">
-                  <li>LORENA GAGO BORRELL</li>
-                  <li>ROSA POZUELO CUBILLO</li>
-                  <li>ROSARIO TAMAYO FIGUERAS</li>
-                  <li>INES PINTO MATESANZ</li>
-                </ul>
-              </div>
-            </div>
+
+            <!-- Equipos -->
+            <?php
+              $consultaEquiposMateria = 'SELECT * FROM equipo where idCurso = "'.$NFC.'"';
+              foreach ($conn->query($consultaEquiposMateria) as $r5) {
+                $idEquipo = $r5['idEquipo'];
+                $nombreEquipo = $r5['nombre'];
+
+              
+                echo '<div class="card mb-3">';
+                echo '<div class="card-header border-light font-weight-bolder"> '.$nombreEquipo.'</div>';
+                echo '<div class="card-body px-0 py-2">';
+                echo '<ul class="mb-0">';
+
+                $consultaAlumnosEquipo = 'SELECT matricula FROM equipo_integrante where idEquipo = "'.$idEquipo.'"';
+                foreach ($conn->query($consultaAlumnosEquipo) as $r6) {
+                  $matriculaEquipo = $r6['matricula'];
+
+                  $consultaNombreAlumno2 = 'SELECT nombre FROM alumno where matricula = "'.$matriculaEquipo.'"';
+                  foreach ($conn->query($consultaNombreAlumno2) as $r7) {
+                    $nombreAlumno2 = $r7['nombre'];
+                  }
+                  
+                  echo '<li> '.$nombreAlumno2.'</li>';
+                }
+                echo '</ul>';
+                echo '</div>';
+                echo '</div>';
+              }
+            ?>
           </div>
         </div>
       </div>

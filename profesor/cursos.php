@@ -95,7 +95,7 @@ $idProfesor = $_SESSION['userid'];
         	echo '</div>';
       	echo '</div>';
         echo '</form>';
-		}
+		  }
 		  echo '</div>';
     ?>
     </div>

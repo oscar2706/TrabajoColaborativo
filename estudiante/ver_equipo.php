@@ -1,14 +1,26 @@
 <?php
-	require('../config/php/Conexion.php');
-	$matricula = 205784657;
+  require('../config/php/conexion.php');
+  session_start();
+  $matricula = $_SESSION['matricula'];
 	
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
- 	 $idEquipo = $_POST['idEquipo'];
- 	 $nombreCurso = $_POST['nombreCurso'];
- 	 $nombrePeriodo = $_POST['nombrePeriodo'];
- 	 $year = $_POST['year'];
-	}
-
+    $idEquipo = $_POST['idEquipo'];
+    $_SESSION['idEquipo'] = $idEquipo;
+    
+    $nombreCurso = $_POST['nombreCurso'];
+    $_SESSION['nombreCurso'] = $nombreCurso;
+    
+    $nombrePeriodo = $_POST['nombrePeriodo'];
+    $_SESSION['nombrePeriodo'] = $nombrePeriodo;
+    
+    $year = $_POST['year'];
+    $_SESSION['year'] = $year;
+	} else {
+    $idEquipo = $_SESSION['idEquipo'];
+    $nombreCurso = $_SESSION['nombreCurso'];
+    $nombrePeriodo = $_SESSION['nombrePeriodo'];
+    $year = $_SESSION['year'];
+  }
 
 ?>
 
@@ -60,8 +72,30 @@
     </div>
 
     <div class="row justify-content-center">
+      <!-- Alerta de alumno -->
+      <div class="col-12 col-md-10 col-xl-8">
+        <?php if(isset($_SESSION['mensaje_exito'])): ?>
+          <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            <strong><?php echo $_SESSION['mensaje_exito'] ?></strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <?php unset($_SESSION['mensaje_exito']) ?>
+        <?php endif; ?>
+        <?php if(isset($_SESSION['mensaje_advertencia'])): ?>
+          <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+            <strong><?php echo $_SESSION['mensaje_advertencia'] ?></strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <?php unset($_SESSION['mensaje_advertencia']) ?>
+        <?php endif; ?>
+      </div>
+
       <!-- Lista de equipos -->
-      <div class="col-12 col-md-6 col-lg-8">
+      <div class="col-12 col-md-10 col-lg-8">
         <div class="card shadow">
           <div class="card-body">
             <div>
@@ -69,8 +103,8 @@
                 Integrantes del equipo
               </h2>
             </div>
-            <!-- Tabla de integrantes -->
 
+            <!-- Tabla de integrantes -->
             <table class="table table-striped">
               
               <?php
@@ -91,10 +125,11 @@
                 echo '<tr>';
                   echo '<th scope="row"> '.$contador.'</th>';
                   echo '<td> '.$nombreCompanero.'</td>';
+                  echo '<td> '.$matriculaCompanero.'</td>';
                   echo '<td>';
                   if($matriculaCompanero!=$matricula ){
                   	echo '<button type="button" class="btn btn-outline-info" data-toggle="modal"';
-                    echo 'data-target="#evaluacionModal">';
+                    echo 'data-target="#evaluacionModal'.$matriculaCompanero.'">';
                     echo 'Realizar coevaluación';
                     echo '</button>';
                   }
@@ -102,34 +137,39 @@
                 echo '</tr>';
 
               echo '</tbody>';
+              
+              // Modal
+              echo '<!-- Confirmación realiza coevaluación Modal -->';
+              echo '<div class="modal fade" id="evaluacionModal'.$matriculaCompanero.'" tabindex="-1" role="dialog"';
+              echo 'aria-labelledby="evaluacionModalLabel" aria-hidden="true">';
+              echo '<div class="modal-dialog modal-dialog-centered">';
+              echo '<div class="modal-content">';
+              echo '<div class="modal-header bg-dark">';
+              echo '<h5 class="modal-title text-white" id="evaluacionModalLabel">Comenzar';
+              echo 'Coevaluación';
+              echo '</h5>';
+              echo '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+              echo '<span aria-hidden="true">&times;</span>';
+              echo '</button>';
+              echo '</div>';
+              echo '<div class="modal-body text-center">';
+              echo '<p class="m-0 h6">¿Desea iniciar la coevaluación de este alumno?</p>';
+              echo '</div>';
+              echo '<div class="modal-footer">';
+              echo '<form action="cuestionario.php" method="post">';
+              echo '<input type="hidden" name="idEquipo" value="'.$idEquipo.'">';
+              echo '<input type="hidden" name="matricula_compañero" value="'.$matriculaCompanero.'">';
+              echo '<button type="submit" class="btn btn-info">Evaluar</button>';
+              echo '</form>';
+              echo '<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>';
+              echo '</div>';
+              echo '</div>';
+              echo '</div>';
+              echo '</div>';
               }
               ?>
-
             </table>
-
-            <!-- Confirmación realiza coevaluación Modal -->
-            <div class="modal fade" id="evaluacionModal" tabindex="-1" role="dialog"
-              aria-labelledby="evaluacionModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header bg-dark">
-                    <h5 class="modal-title text-white" id="evaluacionModalLabel">Comenzar
-                      Coevaluación
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body text-center">
-                    <p class="m-0 h6">¿Desea iniciar la coevaluación de este alumno?</p>
-                  </div>
-                  <div class="modal-footer">
-                    <a class="btn btn-info" href="cuestionario.html" role="button">Evaluar</a>
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>

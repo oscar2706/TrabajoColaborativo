@@ -1,7 +1,7 @@
 <?php 
-	require('../config/php/conexion.php');
-	$matricula = 205784657;
-
+  require('../config/php/conexion.php');
+  session_start();
+  $matricula = $_SESSION['matricula'];
 ?>
 
 <!DOCTYPE html>

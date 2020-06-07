@@ -173,7 +173,7 @@ session_start();
               </table>
               <div class="text-center">
                 <button type="submit" class="btn btn-info">Terminar Coevaluación</button>
-                <a class="btn btn-outline-secondary" href="ver_equipo.html" role="button">Cancelar</a>
+                <a class="btn btn-outline-secondary" href="ver_equipo.php" role="button">Cancelar</a>
               </div>
             </form>
           </div>

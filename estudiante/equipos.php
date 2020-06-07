@@ -51,7 +51,7 @@
       <a href="inscripcion.html" class="btn btn-outline-info">Inscribirse a curso</a>
     </div>
 
-    <!-- Cursos -->
+    <!-- Equipos -->
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
     <?php
 

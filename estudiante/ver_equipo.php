@@ -97,79 +97,76 @@
       <!-- Lista de equipos -->
       <div class="col-12 col-md-10 col-lg-8">
         <div class="card shadow">
-          <div class="card-body">
+          <div class="card-body p-0">
             <div>
-              <h2 class="h5 mb-3 pb-2 text-dark border-bottom border-secondary">
+              <h2 class="h5 m-0 p-3 pb-2 text-dark border-bottom border-secondary">
                 Integrantes del equipo
               </h2>
             </div>
 
             <!-- Tabla de integrantes -->
-            <table class="table table-striped">
-              
-              <?php
-              $contador = 0;
-              $sqlIntegrantes = 'SELECT * FROM equipo_integrante where idEquipo = "'.$idEquipo.'"';
-              foreach ($conn->query($sqlIntegrantes) as $row) {
-              $matriculaCompanero = $row['matricula'];	
-              $contador = $contador + 1;
+            <div class="table-responsive">
+              <table class="table table-striped m-0">
+                <tbody>
+                <?php
+                $contador = 0;
+                $sqlIntegrantes = 'SELECT * FROM equipo_integrante where idEquipo = "'.$idEquipo.'"';
+                foreach ($conn->query($sqlIntegrantes) as $row) {
+                $matriculaCompanero = $row['matricula'];	
+                $contador = $contador + 1;
 
 
-              $sqlNombreCompanero = 'SELECT nombre FROM alumno where matricula = "'.$matriculaCompanero.'"';
-              foreach ($conn->query($sqlNombreCompanero) as $row2) {
-              	$nombreCompanero = $row2['nombre'];
+                $sqlNombreCompanero = 'SELECT nombre FROM alumno where matricula = "'.$matriculaCompanero.'"';
+                foreach ($conn->query($sqlNombreCompanero) as $row2) {
+                  $nombreCompanero = $row2['nombre'];
 
-              }
+                }
 
-              echo '<tbody>';
                 echo '<tr>';
-                  echo '<th scope="row"> '.$contador.'</th>';
-                  echo '<td> '.$nombreCompanero.'</td>';
-                  echo '<td> '.$matriculaCompanero.'</td>';
-                  echo '<td>';
+                  echo '<td class="p-align-middle"> '.$nombreCompanero.'</td>';
+                  echo '<td class="text-center align-middle"> '.$matriculaCompanero.'</td>';
+                  echo '<td class="text-center">';
                   if($matriculaCompanero!=$matricula ){
-                  	echo '<button type="button" class="btn btn-outline-info" data-toggle="modal"';
+                    echo '<button type="button" class="btn btn-outline-info" data-toggle="modal"';
                     echo 'data-target="#evaluacionModal'.$matriculaCompanero.'">';
                     echo 'Realizar coevaluación';
                     echo '</button>';
                   }
                   echo '</td>';
                 echo '</tr>';
-
-              echo '</tbody>';
-              
-              // Modal
-              echo '<!-- Confirmación realiza coevaluación Modal -->';
-              echo '<div class="modal fade" id="evaluacionModal'.$matriculaCompanero.'" tabindex="-1" role="dialog"';
-              echo 'aria-labelledby="evaluacionModalLabel" aria-hidden="true">';
-              echo '<div class="modal-dialog modal-dialog-centered">';
-              echo '<div class="modal-content">';
-              echo '<div class="modal-header bg-dark">';
-              echo '<h5 class="modal-title text-white" id="evaluacionModalLabel">Comenzar';
-              echo 'Coevaluación';
-              echo '</h5>';
-              echo '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
-              echo '<span aria-hidden="true">&times;</span>';
-              echo '</button>';
-              echo '</div>';
-              echo '<div class="modal-body text-center">';
-              echo '<p class="m-0 h6">¿Desea iniciar la coevaluación de este alumno?</p>';
-              echo '</div>';
-              echo '<div class="modal-footer">';
-              echo '<form action="cuestionario.php" method="post">';
-              echo '<input type="hidden" name="idEquipo" value="'.$idEquipo.'">';
-              echo '<input type="hidden" name="matricula_compañero" value="'.$matriculaCompanero.'">';
-              echo '<button type="submit" class="btn btn-info">Evaluar</button>';
-              echo '</form>';
-              echo '<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>';
-              echo '</div>';
-              echo '</div>';
-              echo '</div>';
-              echo '</div>';
-              }
-              ?>
-            </table>
-            
+                
+                // Modal
+                echo '<!-- Confirmación realiza coevaluación Modal -->';
+                echo '<div class="modal fade" id="evaluacionModal'.$matriculaCompanero.'" tabindex="-1" role="dialog"';
+                echo 'aria-labelledby="evaluacionModalLabel" aria-hidden="true">';
+                echo '<div class="modal-dialog modal-dialog-centered">';
+                echo '<div class="modal-content">';
+                echo '<div class="modal-header bg-dark">';
+                echo '<h5 class="modal-title text-white" id="evaluacionModalLabel">Comenzar coevaluación';
+                echo '</h5>';
+                echo '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+                echo '<span aria-hidden="true">&times;</span>';
+                echo '</button>';
+                echo '</div>';
+                echo '<div class="modal-body text-center">';
+                echo '<p class="m-0 h6">¿Desea iniciar la coevaluación de este alumno?</p>';
+                echo '</div>';
+                echo '<div class="modal-footer">';
+                echo '<form action="cuestionario.php" method="post">';
+                echo '<input type="hidden" name="idEquipo" value="'.$idEquipo.'">';
+                echo '<input type="hidden" name="matricula_compañero" value="'.$matriculaCompanero.'">';
+                echo '<button type="submit" class="btn btn-info">Evaluar</button>';
+                echo '</form>';
+                echo '<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+                }
+                ?>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

@@ -12,19 +12,32 @@
   <link href="../assets/css/style.css" rel="stylesheet">
   
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
+
+  <!-- Reference to inscripcion.js -->
+  <script src="../config/js/inscripcion.js"></script>
+  <!-- Reference to login.js -->
+  <script src="../config/js/login.js"></script>
+
   <title>Inscripción</title>
 </head>
 
 <body>
+  <?php
+      //Check if session is started ohterwise, program returns user to student's login page.
+      session_start();
+      if(isset($_SESSION['matricula'])) {
+  ?>
+  <script type="text/javascript">
+    var Suser_id = <?php echo $_SESSION['matricula']; ?>;
+    console.log("El usuario que está en el sistema es: " + Suser_id);
+  </script>
   <!-- Barra de navegación -->
   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-dark border-bottom shadow">
     <h5 class="ml-lg-5 pl-lg-5 my-0 mr-md-auto font-weight-normal text-white">CES</h5>
@@ -44,10 +57,10 @@
     <!-- Formulario -->
     <div class="row justify-content-center">
       <div class="col-12 col-md-10 col-lg-6">
-        <form action="" class="card shadow px-3 py-4">
+        <form class="card shadow px-3 py-4">
 
           <!-- Código -->
-          <div class="form-group">
+          <div class="form-group" id="grpCodigo">
             <label for="codigo">Código del curso</label>
             <div class="input-group mb-3">
               <input type="text" class="form-control" id="codigo" required>
@@ -56,13 +69,23 @@
             </div>
           </div>
           <div class="text-right">
-            <button class="btn btn-info">Aceptar</button>
+            <button class="btn btn-info" id="cursoInscripcion" >Aceptar</button>
             <a href="equipos.html" class="btn btn-outline-secondary">Cancelar</a>
           </div>
         </form>
       </div>
     </div>
   </div>
+  <?php 
+    //IF (isset($_SESSION['matricula'])) ENDS
+    } 
+    //ELSE STARTS
+    else
+    {
+      header("location:login_estudiante.html");
+      //ELSE ENDS
+    }   
+  ?>
 </body>
 
 </html>

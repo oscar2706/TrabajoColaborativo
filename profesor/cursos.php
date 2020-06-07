@@ -52,15 +52,8 @@ $idProfesor = $_SESSION['userid'];
       <a href="nuevo_curso.php" class="btn btn-outline-info">Nuevo curso</a>
     </div>
 
-
-
-
-
-    
     <!-- Cursos -->
-
     <?php 
-
     	echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4">';
     	$consulta = 'SELECT * from curso WHERE idProfesor = "'.$idProfesor.'"';
 		    foreach($conn->query($consulta) as $row){
@@ -103,15 +96,9 @@ $idProfesor = $_SESSION['userid'];
       	echo '</div>';
         echo '</form>';
 		}
-		echo '</div>';
-
-
+		  echo '</div>';
     ?>
-
-
-
     </div>
   </div>
 </body>
-
 </html>

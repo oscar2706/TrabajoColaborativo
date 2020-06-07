@@ -1,8 +1,9 @@
 <?php
-require('conexion.php');
+require('../config/php/conexion.php');
+
 $_SESSION['userid'] =5; //Este será el id del profesor
+
 $idProfesor = $_SESSION['userid'];
-echo $idProfesor; 
 
 ?>
 
@@ -97,7 +98,7 @@ echo $idProfesor;
         	echo '</div>';
       	echo '</div>';
         echo '</form>';
-		}
+		  }
 		  echo '</div>';
     ?>
     </div>

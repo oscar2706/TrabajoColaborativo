@@ -1,6 +1,5 @@
 <?php
-require('conexion.php');
-
+require('../config/php/conexion.php');
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
   $codigoMateria = $_POST['NFC'];
 }

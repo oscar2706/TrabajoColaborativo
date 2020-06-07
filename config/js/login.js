@@ -54,7 +54,7 @@ $(document).ready(function () {
         if (response == 'Login Correct') {
           console.log(response);
           console.log("login Correcto");
-          window.location.href = "equipos.html";
+          window.location.href = "equipos.php";
         } else if (response != 'Contraseña o usuario incorrectos') {
           if(! ($('#Error').length) ){
             $("#Contraseña").after(
@@ -103,7 +103,7 @@ $(document).ready(function () {
         if (response == 'Correct_Bye') {
           console.log(response);
           console.log("Bye");
-          window.location.href = "login_estudiante.html";
+          window.location.href = "login_estudiante.php";
         } else if (response == 'Error') {
           console.log(response);
           console.log("Error bye");

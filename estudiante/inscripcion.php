@@ -60,7 +60,7 @@
         <form class="card shadow px-3 py-4">
 
           <!-- Código -->
-          <div class="form-group" id="grpCodigo">
+          <div class="form-group m-0" id="grpCodigo">
             <label for="codigo">Código del curso</label>
             <div class="input-group mb-3">
               <input type="text" class="form-control" id="codigo" required>
@@ -70,7 +70,7 @@
           </div>
           <div class="text-right">
             <button class="btn btn-info" id="cursoInscripcion" >Aceptar</button>
-            <a href="equipos.html" class="btn btn-outline-secondary">Cancelar</a>
+            <a href="equipos.php" class="btn btn-outline-secondary">Cancelar</a>
           </div>
         </form>
       </div>

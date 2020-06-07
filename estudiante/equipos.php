@@ -48,7 +48,7 @@
       <h1 class="font-weight-light text-center mr-3">Equipos a los que pertenezco</h1>
     </div>
     <div class="row justify-content-center my-3">
-      <a href="inscripcion.html" class="btn btn-outline-info">Inscribirse a curso</a>
+      <a href="inscripcion.php" class="btn btn-outline-info">Inscribirse a curso</a>
     </div>
 
     <!-- Equipos -->

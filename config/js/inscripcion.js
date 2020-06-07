@@ -36,7 +36,7 @@ $(document).ready(function () {
             );
           }
           $('#AlertSuccess').on('closed.bs.alert', function () {
-            window.location.href = "equipos.html";
+            window.location.href = "equipos.php";
           })
 
         } else if (response == 'Inscrito anteriormente') {

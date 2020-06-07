@@ -19,6 +19,7 @@ $(document).ready(function () {
         if (response == 'Login Correct') {
           console.log(response);
           console.log("login Correcto");
+          window.location.href = "cursos.php";
         } else if (response != 'Contraseña o usuario incorrectos') {
           if(! ($('#Error').length) ){
             $("#Contraseña").after(

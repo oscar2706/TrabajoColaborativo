@@ -1,9 +1,7 @@
 <?php
 require('../config/php/conexion.php');
-$_SESSION['userid'] =5; //Este será el id del profesor
+session_start();
 $idProfesor = $_SESSION['userid'];
-echo $idProfesor; 
-
 ?>
 
 <!DOCTYPE html>

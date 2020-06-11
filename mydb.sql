@@ -507,9 +507,10 @@ ALTER TABLE `evaluacion`
 --
 -- Filtros para la tabla `rubro`
 --
+/*
 ALTER TABLE `rubro`
   ADD CONSTRAINT `fk_Rubro_Evaluacion1` FOREIGN KEY (`idEvaluacion`) REFERENCES `evaluacion` (`idEvaluacion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
+COMMIT;*/
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -1,9 +1,9 @@
 <?php
 require('../config/php/conexion.php');
+
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
   $codigoMateria = $_POST['NFC'];
 }
-
 
 $_SESSION['userid'] =1; //Este será el id del profesor
 $idProfesor = $_SESSION['userid'];
@@ -139,7 +139,7 @@ foreach($conn->query($consulta) as $row){
           <div class="card-body">
             <h2 class="h4 mb-3 pb-2 text-dark border-bottom border-secondary">
               Equipos <span class="badge badge-pill badge-secondary"> <?php echo $nEquipos ?></span>
-              <a href="asignar_equipos.html" class="btn btn-outline-info">Gestionar equipos</a>
+              <?php echo "<a href='asignar_equipos.php?clave=".$NFC."' class='btn btn-outline-info'>Gestionar equipos</a>"; ?>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#evaluacionModal">
                 Habilitar evaluación
@@ -176,7 +176,7 @@ foreach($conn->query($consulta) as $row){
               foreach ($conn->query($consultaEquiposMateria) as $r5) {
                 $idEquipo = $r5['idEquipo'];
                 $nombreEquipo = $r5['nombre'];
-
+              
               
                 echo '<div class="card mb-3">';
                 echo '<div class="card-header border-light font-weight-bolder"> '.$nombreEquipo.'</div>';
@@ -199,6 +199,7 @@ foreach($conn->query($consulta) as $row){
                 echo '</div>';
               }
             ?>
+            
           </div>
         </div>
       </div>

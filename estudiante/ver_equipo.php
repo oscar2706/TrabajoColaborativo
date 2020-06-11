@@ -27,7 +27,7 @@
 <!DOCTYPE html>
 <html lang="es_MX">
 
-<head>
+<head runat="server">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -38,6 +38,8 @@
   <link href="../assets/css/style.css" rel="stylesheet">
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
@@ -77,7 +79,7 @@
         <?php if(isset($_SESSION['mensaje_exito'])): ?>
           <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
             <strong><?php echo $_SESSION['mensaje_exito'] ?></strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" disabled>
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -127,10 +129,14 @@
                   echo '<td class="text-center align-middle"> '.$matriculaCompanero.'</td>';
                   echo '<td class="text-center">';
                   if($matriculaCompanero!=$matricula ){
-                    echo '<button type="button" class="btn btn-outline-info" data-toggle="modal"';
+                    echo '<button type="button" id="button" name="button" class="btn btn-outline-info" data-toggle="modal"';
                     echo 'data-target="#evaluacionModal'.$matriculaCompanero.'">';
                     echo 'Realizar coevaluación';
                     echo '</button>';
+
+                    echo '<script type="text/javascript">';
+                    echo '$("button").click(function () { $("button").attr("disabled", false); });';    
+                    echo '</script>';
                   }
                   echo '</td>';
                 echo '</tr>';

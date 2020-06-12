@@ -28,7 +28,7 @@ $(document).ready(function () {
           if(! ($('#AlertSuccess').length) ){
             $("#grpCodigo").after(
               '<div class="alert alert-success alert-dismissible fade show" role="alert" id="AlertSuccess">'
-              +'  <strong>¡Te has inscrito al curso con el código '+ codigo +' !</strong>.'
+              +'  <strong>¡Te has inscrito al curso con el código '+ codigo +' !</strong>'
               +'  <button type="button" class="close" data-dismiss="alert" aria-label="Close">'
               +'    <span aria-hidden="true">&times;</span>'
               +'  </button>'
@@ -45,7 +45,7 @@ $(document).ready(function () {
           if(! ($('#Alert').length) ){
             $("#grpCodigo").after(
               '<div class="alert alert-warning alert-dismissible fade show" role="alert" id="Alert">'
-              +'  <strong>¡Ya está inscrito en este curso!</strong>.'
+              +'  <strong>¡Ya está inscrito en este curso!</strong>'
               +'  <button type="button" class="close" data-dismiss="alert" aria-label="Close">'
               +'    <span aria-hidden="true">&times;</span>'
               +'  </button>'
@@ -60,7 +60,7 @@ $(document).ready(function () {
             
             $("#grpCodigo").after(
               '<div class="alert alert-warning alert-dismissible fade show" role="alert" id="Alert">'
-              +'  <strong>¡El Curso con el Código '+ codigo +' No Existe!</strong>.'
+              +'  <strong>¡El curso con el código '+ codigo +' no existe!</strong>'
               +'  <button type="button" class="close" data-dismiss="alert" aria-label="Close">'
               +'    <span aria-hidden="true">&times;</span>'
               +'  </button>'

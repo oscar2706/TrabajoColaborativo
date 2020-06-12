@@ -26,7 +26,7 @@ foreach($conn->query($consulta) as $row){
           $nombrePeriodo = $r['nombre'];  //Nombre del periodo (Primavera, Verano u Otoño)
         }
 
-        $consultaEstado = 'select estado from estadoCurso where idEstadoCurso = "'.$estadoCurso.'"';
+        $consultaEstado = 'select estado from estadocurso where idEstadoCurso = "'.$estadoCurso.'"';
         foreach ($conn->query($consultaEstado) as $r2) {
           $eCurso = $r2['estado']; //estado del curso (Activo o Finalizado)
         }

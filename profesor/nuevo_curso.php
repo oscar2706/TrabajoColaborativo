@@ -1,7 +1,7 @@
 <?php
   require('../config/php/conexion.php');
   session_start();
-  $idProfesor=$_SESSION['Id_Profesor'];
+  $idProfesor=$_SESSION['userid'];
 
   if(!empty($_POST['nombre']) && !empty($_POST['codigo']) && !empty($_POST['periodo'])){
     $nombre=$_POST['nombre'];

@@ -370,7 +370,8 @@ CREATE TABLE IF NOT EXISTS `estadocurso` (
 
 INSERT INTO `estadocurso` (`idEstadoCurso`, `estado`) VALUES
 (1, 'Activo'),
-(2, 'Finalizado');
+(2, 'Evaluacion'),
+(3, 'Finalizado');
 
 -- --------------------------------------------------------
 
@@ -431,7 +432,7 @@ INSERT INTO `periodo` (`idPeriodo`, `nombre`) VALUES
 
 DROP TABLE IF EXISTS `profesor`;
 CREATE TABLE IF NOT EXISTS `profesor` (
-  `idProfesor` int(11) NOT NULL,
+  `idProfesor` int(11) NOT NULL AUTO_INCREMENT,
   `correo` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   PRIMARY KEY (`idProfesor`)

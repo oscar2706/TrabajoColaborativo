@@ -118,7 +118,7 @@
                 $contador = $contador + 1;
 
                 //$idEquipo
-                $query = $conn->prepare('SELECT count(matricula) as total FROM Evaluacion WHERE matricula_evaluador = "'.$matricula.'" and matricula = "'.$matriculaCompanero.'"');
+                $query = $conn->prepare('SELECT count(matricula) as total FROM evaluacion WHERE matricula_evaluador = "'.$matricula.'" and matricula = "'.$matriculaCompanero.'"');
                 $query->execute();
                 $sqlEvaluacion = $query->fetch(PDO::FETCH_OBJ);
                

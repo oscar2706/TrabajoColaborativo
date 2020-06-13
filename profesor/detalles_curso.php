@@ -1,11 +1,15 @@
 <?php
 require('../config/php/conexion.php');
+session_start();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
   $codigoMateria = $_POST['NFC'];
 }
 
-$_SESSION['userid'] =1; //Este será el id del profesor
+
+
+
+
 $idProfesor = $_SESSION['userid'];
 
 
@@ -74,6 +78,10 @@ foreach($conn->query($consulta) as $row){
     <h5 class="ml-lg-5 pl-lg-5 my-0 mr-md-auto font-weight-normal text-white">CES</h5>
     <nav class="my-2 my-md-0 mr-md-3">
       <a class="px-2 text-white" href="cursos.php">Cursos</a>
+      <!-- En duda -->
+      <a class="px-2 text-white" href="#">Euipos</a>
+      <a class="px-2 text-white" href="#">Alumnos</a>
+      <!--  -->
       <a class="mr-lg-5 pr-lg-5 pl-4 text-light" href="login_profesor.html">Salir</a>
     </nav>
   </div>
@@ -135,7 +143,7 @@ foreach($conn->query($consulta) as $row){
           <div class="card-body">
             <h2 class="h4 mb-3 pb-2 text-dark border-bottom border-secondary">
               Equipos <span class="badge badge-pill badge-secondary"> <?php echo $nEquipos ?></span>
-              <?php echo "<a href='asignar_equipos.php?clave=".$NFC."' class='btn btn-outline-info'>Gestionar equipos</a>"; ?>
+              <a href="asignar_equipos.html" class="btn btn-outline-info">Gestionar equipos</a>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#evaluacionModal">
                 Habilitar evaluación
@@ -155,11 +163,27 @@ foreach($conn->query($consulta) as $row){
                     </div>
                     <div class="modal-body text-center">
                       <p class="m-0 h6">¿Habilitar la evaluación para el curso
-                        <strong>TrabajoColaborativo - Primavera2020</strong>?</p>
+                        <strong> <?php echo $nombreCurso." - ".$nombrePeriodo." ".$yearCurso; ?> </strong>?</p>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-info">Aceptar</button>
+                    
+                      <form action="detalles_curso.php" method = "POST">
+                      	
+                      	<?php
+                      	
+                      	if(isset($_POST['habilitar'])){
+            							$sqlHabilitarCurso = 'UPDATE curso SET idEstadoCurso = 2 WHERE idCurso = "'.$codigoMateria.'"';
+						              $conn->query($sqlHabilitarCurso);
+                        }
+
+                      	?> 
+                        <input type = "hidden" name = "NFC" value = <?php echo $codigoMateria; ?>>
+                      	<input type = "hidden" name = "habilitar">
+                      	<input type = "submit" class="btn btn-info" value = "Aceptar">
+         			  </form>
+
                       <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                    
                     </div>
                   </div>
                 </div>
@@ -167,12 +191,13 @@ foreach($conn->query($consulta) as $row){
             </h2>
 
             <!-- Equipos -->
+
             <?php
               $consultaEquiposMateria = 'SELECT * FROM equipo where idCurso = "'.$NFC.'"';
               foreach ($conn->query($consultaEquiposMateria) as $r5) {
                 $idEquipo = $r5['idEquipo'];
                 $nombreEquipo = $r5['nombre'];
-              
+
               
                 echo '<div class="card mb-3">';
                 echo '<div class="card-header border-light font-weight-bolder"> '.$nombreEquipo.'</div>';
@@ -195,7 +220,6 @@ foreach($conn->query($consulta) as $row){
                 echo '</div>';
               }
             ?>
-            
           </div>
         </div>
       </div>

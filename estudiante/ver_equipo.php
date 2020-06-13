@@ -139,7 +139,7 @@
                     echo '<td class="text-center">';
                     if($matriculaCompanero!=$matricula ){
                       //                          id="'.$matriculaCompanero.'"
-                      echo '<button type="button" id="'.$matriculaCompanero.'" name="button" class="btn btn-outline-info" data-toggle="modal" disabled';
+                      echo '<button type="button" id="'.$matriculaCompanero.'" name="button" class="btn btn-outline-info" data-toggle="modal" disabled ';
                       echo 'data-target="#evaluacionModal'.$matriculaCompanero.'">';
                       echo 'Realizar coevaluación';
                       echo '</button>';

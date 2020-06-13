@@ -143,7 +143,7 @@ foreach($conn->query($consulta) as $row){
           <div class="card-body">
             <h2 class="h4 mb-3 pb-2 text-dark border-bottom border-secondary">
               Equipos <span class="badge badge-pill badge-secondary"> <?php echo $nEquipos ?></span>
-              <a href="asignar_equipos.html" class="btn btn-outline-info">Gestionar equipos</a>
+              <a href="asignar_equipos.php?clave=<?php echo $NFC?>" class="btn btn-outline-info">Gestionar equipos</a>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#evaluacionModal">
                 Habilitar evaluación

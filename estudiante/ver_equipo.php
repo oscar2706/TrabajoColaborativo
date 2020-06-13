@@ -117,29 +117,54 @@
                 $matriculaCompanero = $row['matricula'];	
                 $contador = $contador + 1;
 
+                //$idEquipo
+                $query = $conn->prepare('SELECT count(matricula) as total FROM Evaluacion WHERE matricula_evaluador = "'.$matricula.'" and matricula = "'.$matriculaCompanero.'"');
+                $query->execute();
+                $sqlEvaluacion = $query->fetch(PDO::FETCH_OBJ);
+               
+               
 
                 $sqlNombreCompanero = 'SELECT nombre FROM alumno where matricula = "'.$matriculaCompanero.'"';
                 foreach ($conn->query($sqlNombreCompanero) as $row2) {
                   $nombreCompanero = $row2['nombre'];
 
+
+
                 }
 
-                echo '<tr>';
-                  echo '<td class="p-align-middle"> '.$nombreCompanero.'</td>';
-                  echo '<td class="text-center align-middle"> '.$matriculaCompanero.'</td>';
-                  echo '<td class="text-center">';
-                  if($matriculaCompanero!=$matricula ){
-                    echo '<button type="button" id="button" name="button" class="btn btn-outline-info" data-toggle="modal"';
-                    echo 'data-target="#evaluacionModal'.$matriculaCompanero.'">';
-                    echo 'Realizar coevaluación';
-                    echo '</button>';
+                if($sqlEvaluacion->total == 1){
+                  echo '<tr>';
+                    echo '<td class="p-align-middle"> '.$nombreCompanero.'</td>';
+                    echo '<td class="text-center align-middle"> '.$matriculaCompanero.'</td>';
+                    echo '<td class="text-center">';
+                    if($matriculaCompanero!=$matricula ){
+                      //                          id="'.$matriculaCompanero.'"
+                      echo '<button type="button" id="'.$matriculaCompanero.'" name="button" class="btn btn-outline-info" data-toggle="modal" disabled';
+                      echo 'data-target="#evaluacionModal'.$matriculaCompanero.'">';
+                      echo 'Realizar coevaluación';
+                      echo '</button>';
 
-                    echo '<script type="text/javascript">';
-                    echo '$("button").click(function () { $("button").attr("disabled", false); });';    
-                    echo '</script>';
-                  }
-                  echo '</td>';
-                echo '</tr>';
+                      
+                    }
+                    echo '</td>';
+                  echo '</tr>';
+                }else{
+                  echo '<tr>';
+                    echo '<td class="p-align-middle"> '.$nombreCompanero.'</td>';
+                    echo '<td class="text-center align-middle"> '.$matriculaCompanero.'</td>';
+                    echo '<td class="text-center">';
+                    if($matriculaCompanero!=$matricula ){
+                      //                          id="'.$matriculaCompanero.'"
+                      echo '<button type="button" id="'.$matriculaCompanero.'" name="button" class="btn btn-outline-info" data-toggle="modal"';
+                      echo 'data-target="#evaluacionModal'.$matriculaCompanero.'">';
+                      echo 'Realizar coevaluación';
+                      echo '</button>';
+                    }
+                    echo '</td>';
+                  echo '</tr>';
+                }
+
+                
                 
                 // Modal
                 echo '<!-- Confirmación realiza coevaluación Modal -->';
@@ -161,7 +186,7 @@
                 echo '<form action="cuestionario.php" method="post">';
                 echo '<input type="hidden" name="idEquipo" value="'.$idEquipo.'">';
                 echo '<input type="hidden" name="matricula_compañero" value="'.$matriculaCompanero.'">';
-                echo '<button type="submit" class="btn btn-info">Evaluar</button>';
+                echo '<button type="submit" id="C'.$matriculaCompanero.'" class="btn btn-info">Evaluar</button>';
                 echo '</form>';
                 echo '<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>';
                 echo '</div>';

@@ -35,7 +35,7 @@
   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-dark border-bottom shadow">
     <h5 class="ml-lg-5 pl-lg-5 my-0 mr-md-auto font-weight-normal text-white">CES</h5>
     <nav class="my-2 my-md-0 mr-md-3">
-      <a class="px-2 text-white" href="#">Inicio</a>
+      <a class="px-2 text-white" href="equipos.php">Inicio</a>
       <a class="px-2 text-white" href="resultados.php">Resultados</a>
       <a class="mr-lg-5 pr-lg-5 pl-4 text-light" href="login_estudiante.html">Salir</a>
     </nav>
